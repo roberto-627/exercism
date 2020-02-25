@@ -11,6 +11,12 @@ export class Matrix {
     let stringColumns = matrix.split('\n');
 
     stringColumns.forEach(string => {
+      let col = [];
+      string.forEach(string => { 
+        col.push(parseInt(string[index]));
+      });
+      this.matrixRows.push(col);
+
       this.matrixColumns.push(string.split(' '));
     });
 
