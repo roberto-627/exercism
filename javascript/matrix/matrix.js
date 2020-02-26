@@ -8,30 +8,33 @@ export class Matrix {
     this.matrixColumns = [];
     this.matrixRows = [];
 
-    let stringColumns = matrix.split('\n');
+    let matrixRows = matrix.split('\n');
+    let matrixColumns = [];
 
-    stringColumns.forEach(string => {
-      let col = [];
-      string.forEach(string => { 
-        col.push(parseInt(string[index]));
-      });
-      this.matrixRows.push(col);
+    let index = 0;
+    let subindex = 0;
+    let highestColCount = 0;
 
-      this.matrixColumns.push(string.split(' '));
-    });
-
-    console.log(this.matrixColumns);
-
-    for (let index = 0; index < this.matrixColumns.length; index++) {
-      let row = [];
-      this.matrixColumns.forEach(column => { 
-        row.push(parseInt(column[index]));
-      });
-      this.matrixRows.push(row);
+    for (index = 0; index < matrixRows.length; index++) {
+      matrixRows[index] = matrixRows[index].split(' ');
+      if(highestColCount < matrixRows[index].length){
+        highestColCount = matrixRows[index].length;
+      }
+      for (subindex = 0; subindex < matrixRows[index].length; subindex++) {
+        matrixRows[index][subindex] = parseInt(matrixRows[index][subindex]);
+      }
     }
 
-    console.log(this.matrixRows);
+    for (index = 0; index < highestColCount; index++) {
+      let col = [];
+      for (subindex = 0; subindex < matrixRows.length; subindex++) {
+        col.push(matrixRows[subindex][index]);
+      }
+      matrixColumns.push(col);
+    }
 
+    this.matrixColumns = matrixColumns;
+    this.matrixRows = matrixRows;
     return;
   }
 
